@@ -7,7 +7,8 @@
 """
 
 import math
-import cmath
+# import cmath
+import random
 
 #变量表
 var1 = -1
@@ -15,6 +16,7 @@ var2 = 4.4
 var3 = 3
 list1 = [1,2,3,4,5,6]
 
+print('--------------以下是数字函数----------------')
 #返回数字的绝对值 fabs(x)为绝对值的浮点数
 print(abs(var1))
 #返回数字的上入整数
@@ -40,6 +42,15 @@ print(round(11.4514,2))
 #返回数字x的平方根
 print(math.sqrt(16))
 
+print('--------------以下是随机数函数----------------')
+#从序列的元素中随机挑选一个元素
+print(random.choice(list1))
+#从指定范围内，按指定基数递增的集合中获取一个随机数，基数默认值为 1
+print(random.randrange(0,100,5))
+#随机生成下一个实数，它在[0,1)范围内。
+print(random.random())
+#将序列的所有元素随机排序
+print(random.shuffle(list1))
 
 
 
