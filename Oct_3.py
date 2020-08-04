@@ -146,32 +146,49 @@ class Restaurant:
 # 打印属性login_attempts的值,确认它被正确地递增；
 # 然后，调用方法reset_login_attempts()
 # 并再次打印属性login_attempts的值，确认它被重置为0。
+#如何对于每个实例对象有不同的数值？
 
-class User(object):
-    login_attempts = 0  #如何对于每个实例对象有不同的数值？
+class User():
+    #这是一个类变量
+    login_attempts = 0
+    # 对象被实例化后会先找实例变量，没有实例变量，才会找类变量。
     def __init__(self,last_name,first_name):
         self.first_name = first_name
         self.last_name = last_name
+        self.name = self.last_name + self.first_name
+        # 这是一个实例变量
+        self.login_attempts = 0
         print("亲爱的" + last_name + first_name + "，您好")
 
-    @classmethod
-    def increment_login_attempts(cls):
-        cls.login_attempts += 1
+    def increment_login_attempts(self):
+        # 如果不创建实例变量，这条语句将会自动创建，
+        # 但在没有实例变量之前，会指向类变量
+        # print(self.login_attempts) 这里输出类变量的值
+        self.login_attempts += 1
+        # print(self.login_attempts) 这里输出实例变量的值
+        User.login_attempts += 1
 
-    @classmethod
-    def reset_login_attempts(cls):
-        User.login_attempts = 0
+    def reset_login_attempts(self):
+        self.login_attempts = 0
 
-# user1 = User('张','三')
-# for i in range(1,6):
-#     user1.increment_login_attempts()
-# user2 = User('李','四')
-# print('用户请求的次数为：' + str(user1.login_attempts))
-# print('用户请求的次数为：' + str(user2.login_attempts))
-# user1.reset_login_attempts()
-# user3 = User('王','五')
-# print('用户请求的次数为：' + str(user1.login_attempts))
-# print('用户请求的次数为：' + str(user3.login_attempts))
+#实例化对象张三
+user1 = User('张','三')
+#进行五次用户请求
+for i in range(1,6):
+    user1.increment_login_attempts()
+#实例化对象李四
+user2 = User('李','四')
+#进行两次用户请求
+for i in range(1,3):
+    user2.increment_login_attempts()
+#查询不同实例化对象的用户请求次数，实例变量对于不同实例的值不同，类变量被全部实例共享
+print(user1.name + '用户请求的次数为：' + str(user1.login_attempts))#
+print(user2.name + '用户请求的次数为：' + str(user2.login_attempts))
+print('总请求次数（类变量）：' + str(User.login_attempts))
+#调用reset函数将用户请求次数归零
+user1.reset_login_attempts()
+print(user1.name + '用户请求的次数为：' + str(user1.login_attempts))
+
 
 
 
