@@ -7,7 +7,7 @@
 """
 
 import math
-# import cmath
+import cmath
 import random
 
 #变量表
@@ -52,7 +52,21 @@ print(random.random())
 #将序列的所有元素随机排序
 random.shuffle(list1)
 print(list1)
-#
+#随机生成下一个实数，它在[x,y]范围内。
+print(random.uniform(1,10))
 
+print('--------------以下是三角函数----------------')
+#以下注释省略
+print(math.acos(0),math.asin(1),math.atan(2))
+print(math.atan2(1,1))
+print(math.cos(math.pi),math.sin(math.pi/2),math.tan(3*math.pi/4))
+#将弧度转换为角度,如degrees(math.pi/2) ， 返回90.0
+print(math.degrees(math.pi/2))
+#将角度转换为弧度
+print((math.radians(180)))
+
+print('--------------以下是数学常量----------------')
+print(math.pi)
+print(math.e)
 
 
