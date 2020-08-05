@@ -84,7 +84,78 @@ class person():
 # print('您好，' + zhangsan.get_name())
 # print(zhangsan.want())
 
+#使用面向对象的方式实现加减乘除四则运算。
+class cal():
+    def __init__(self,num1,num2,operator):
+        self.num1 = num1
+        self.num2 = num2
+        self.operator = operator
+        self.arithmetic()
 
+    def arithmetic(self):
+        if self.operator == "+":
+            res = self.num1 + self.num2
+            print('%d加%d等于%d'%(self.num1,self.num2,res))
+        elif self.operator == "-":
+            res = self.num1 - self.num2
+            print('%d减%d等于%d' % (self.num1, self.num2, res))
+        elif self.operator == "*":
+            res = self.num1 * self.num2
+            print('%d乘%d等于%d' % (self.num1, self.num2, res))
+        elif self.operator == "/":
+            res = self.num1 / self.num2
+            print('%d除%d等于%d' % (self.num1, self.num2, res))
+
+# cal1 = cal(4,2,'+')
+# cal2 = cal(4,2,'-')
+# cal3 = cal(4,2,'*')
+# cal4 = cal(4,2,'/')
+
+# 1、创建三个游戏人物，分别是：
+# 属性:
+#     名字：name,定位：category,血量：Output技能：Skill
+# 英雄：
+#     铠，战士，血量：1000 技能：极刃风暴
+#     王昭君，法师 ，血量：1000 技能：凛冬将至
+#     阿轲，刺客，血量：1000 技能：瞬华
+# 2、游戏场景，分别：
+# 偷红buff，释放技能偷到红buff消耗血量300
+# solo战斗，一血，消耗血量500
+# 补血，加血200
+
+class heros():
+    def __init__(self,name,category,skill,output = 1000):
+        self.name = name
+        self.category = category
+        self.skill = skill
+        self.output = output
+
+    def get_info(self):
+        return '英雄的名字是：%s，定位是：%s，技能是：%s，血量是：%d'\
+            %(self.name,self.category,self.skill,self.output)
+
+    def touhong(self):
+        self.output -= 300
+        if self.output > 0:
+            return '%s释放了%s偷到了红buff，减少了300血，现在血量是：%d'\
+                %(self.name,self.skill,self.output)
+        else:
+            return 'You are dead'
+
+    def solo(self,enemy):
+        self.output -= 500
+        if self.output > 0:
+            return '%s击败了%s，拿下了一血，减少了500血，现在血量是：%d' \
+                   % (self.name, enemy, self.output)
+        else:
+            return 'You are dead'
+
+    def cure(self):
+        if self.output > 0:
+            self.output += 200
+            return '你回了一口血，现在血量是：' + str(self.output)
+        else:
+            return '您已经死亡'
 
 
 
