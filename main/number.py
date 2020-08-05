@@ -50,7 +50,9 @@ print(random.randrange(0,100,5))
 #随机生成下一个实数，它在[0,1)范围内。
 print(random.random())
 #将序列的所有元素随机排序
-print(random.shuffle(list1))
+random.shuffle(list1)
+print(list1)
+#
 
 
 

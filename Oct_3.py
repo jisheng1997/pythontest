@@ -158,7 +158,12 @@ class User():
         self.name = self.last_name + self.first_name
         # 这是一个实例变量
         self.login_attempts = 0
-        print("亲爱的" + last_name + first_name + "，您好")
+
+    def describe_user(self):
+        return "用户的名字是：" + self.last_name + self.first_name
+
+    def greet_user(self):
+        return "亲爱的" + self.last_name + self.first_name + "，您好"
 
     def increment_login_attempts(self):
         # 如果不创建实例变量，这条语句将会自动创建，
@@ -173,6 +178,8 @@ class User():
 
 #实例化对象张三
 user1 = User('张','三')
+print(user1.describe_user())
+print(user1.greet_user())
 #进行五次用户请求
 for i in range(1,6):
     user1.increment_login_attempts()
