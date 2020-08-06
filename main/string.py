@@ -1,8 +1,19 @@
 #!/usr/bin/python3
 
+import math
+
+str1 = ''
 str2 = 'hello'
 str3 = 'python'
 str4 = 'hello\tpython\t\nI\tlove\tyou'
+zhongwen = '你好'
+shuzi = '123654'
+shuzizifu = '\u00BD'
+xiaoxie = 'xiaoxie'
+daxie = 'DAXIE'
+kongbai = '    '
+title = 'This Is A Title'
+list1 = ['我','今年','24岁',',','是','学生']
 
 print('------------以下为字符串操作--------------')
 
@@ -44,5 +55,25 @@ print(str2.center(len(str2)+10, '*'))
 print(str2.count('l',0,len(str2)))
 #把字符串 string 中的 tab 符号转为空格，tab 符号默认的空格数是 8 。
 print(str4.expandtabs(tabsize=15))
-#检查字符串是否以 obj 结束，或者指定则检查指定的范围内是否以 obj 结束，如果是，返回 True,否则返回 False.
+#检查字符串是否是以指定子字符串 substr 开头，是则返回 True，否则返回 False。
+print(str2.startswith('H'))
+#检查字符串是否以 obj 结束，如果是，返回 True,否则返回 False.
 print(str2.endswith('o'))
+#检测str是否包含在字符串中，如果包含返回开始的索引值，否则返回-1
+print(str2.find('ll'))
+#跟find()方法一样，只不过如果str不在字符串中会报一个异常。
+print(str2.index('lo'))
+#如果字符串至少有一个字符并且所有字符都是字母或数字则返 回 True，否则返回 False
+#如果字符串至少有一个字符并且所有字符都是字母或中文字则返回 True, 否则返回 False
+#如果字符串只包含数字则返回 True 否则返回 False.
+#如果字符串中只包含数字字符，则返回 True，否则返回 False
+#如果字符串中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是小写，则返回 True，否则返回 False
+#如果字符串中包含至少一个区分大小写的字符，并且所有这些(区分大小写的)字符都是大写，则返回 True，否则返回 False
+#如果字符串中只包含空白，则返回 True，否则返回 False.
+#如果字符串是标题化的(见 title())则返回 True，否则返回 False
+print(str2.isalnum(),zhongwen.isalpha(),shuzi.isdigit(),shuzizifu.isnumeric(),
+      xiaoxie.islower(),daxie.isupper(),kongbai.isspace(),title.istitle())
+#以指定字符串作为分隔符，将 seq 中所有的元素(的字符串表示)合并为一个新的字符串
+print(str1.join(list1))
+#返回字符串长度
+print(len(str4))
