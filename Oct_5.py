@@ -42,12 +42,13 @@ class User():
         self.last_name = last_name
         self.name = self.last_name + self.first_name
         self.login_attempts = 0
+        self.greet_user()
 
     def describe_user(self):
         return "用户的名字是：" + self.last_name + self.first_name
 
     def greet_user(self):
-        return "亲爱的" + self.last_name + self.first_name + "，您好"
+        print("亲爱的" + self.last_name + self.first_name + "，您好")
 
     def increment_login_attempts(self):
         self.login_attempts += 1
@@ -56,7 +57,53 @@ class User():
         self.login_attempts = 0
 
 class Admin(User):
-    pass
+    privileges = ['can add post','can delete post','can ban user']
+    def show_privileges(self):
+        for x in Admin.privileges:
+            print(self.name + x)
+
+# admin1 = Admin("zhang",' san ')
+# print(admin1.describe_user())
+# admin1.show_privileges()
+
+# 冰淇淋小店：冰其淋小店是一种特殊的餐馆。
+# 编写一个名为IceCreamStand的类，让它继承你为完成练习1或练习4而编写的Restaurant类
+# 这两个版本Restaurant类都可以，挑选你更喜欢的那个即可。
+# 添加一个名为flavors的属性,用于存储一个由各种口味的冰淇淋组成的列表。
+# 编写一个显示这些冰淇淋的方法。创建一IceCreamStand实例,并调用这个方法。
+
+#父类
+class Restaurant:
+    count = 0
+    number_served = 0
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name = restaurant_name
+        self.cuisine_type = cuisine_type
+        Restaurant.count += 1
+
+    def describe_restaurant(self):
+        print("餐馆的名字是：" + self.restaurant_name)
+        print("烹饪类型是：" + self.cuisine_type)
+
+    def open_restaurant (self):
+        return "餐馆正在营业"
+
+    def set_number_served(self,x):
+        Restaurant.number_served = x
+
+    def get_number_served(self):
+        return '正在就餐的人数是：' + str(Restaurant.number_served)
+
+    def increment_number_served(self,increment):
+        Restaurant.number_served += increment
+
+class IceCreamStand(Restaurant):
+    favours = ['','']
+    def __init__(self,restaurant_name):
+        self.restaurant_name = restaurant_name
+        # super().__init__()
+
+icecream1 = IceCreamStand('冰其淋小店')
 
 #私有属性和方法
 class person():
@@ -140,24 +187,31 @@ class heros():
             return '%s释放了%s偷到了红buff，减少了300血，现在血量是：%d'\
                 %(self.name,self.skill,self.output)
         else:
-            return 'You are dead'
+            return self.name + '已经死亡'
 
     def solo(self,enemy):
         self.output -= 500
+        enemy.output = -1
         if self.output > 0:
             return '%s击败了%s，拿下了一血，减少了500血，现在血量是：%d' \
-                   % (self.name, enemy, self.output)
+                   % (self.name, enemy.name, self.output)
         else:
-            return 'You are dead'
+            return self.name + '已经死亡'
 
     def cure(self):
         if self.output > 0:
             self.output += 200
-            return '你回了一口血，现在血量是：' + str(self.output)
+            return self.name + '回了一口血，现在血量是：' + str(self.output)
         else:
             return '您已经死亡'
 
-
+# kai = heros('铠','战士','极刃风暴')
+# wangzhaojun = heros('王昭君','法师' ,'凛冬将至')
+# print(kai.touhong())
+# print(kai.solo(wangzhaojun))
+# print(kai.cure())
+# print(wangzhaojun.touhong())
+# print(wangzhaojun.get_info())
 
 
 
