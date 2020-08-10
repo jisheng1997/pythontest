@@ -6,6 +6,8 @@
 @Author  : jisheng
 """
 
+import random
+
 #继承
 class animal():
     def eat(self):
@@ -98,12 +100,19 @@ class Restaurant:
         Restaurant.number_served += increment
 
 class IceCreamStand(Restaurant):
-    favours = ['','']
+    favours = ['Vanilla','Chocolate','Green Tea','Coconut','Caramel',
+               'Raspberry','Cherries','Tiramisu']
     def __init__(self,restaurant_name):
         self.restaurant_name = restaurant_name
         # super().__init__()
 
+    def describe_restaurant(self):
+        print("餐馆的名字是：" + self.restaurant_name)
+        print("冰激凌的口味是：" + random.choice(IceCreamStand.favours))
+
+
 icecream1 = IceCreamStand('冰其淋小店')
+icecream1.describe_restaurant()
 
 #私有属性和方法
 class person():
