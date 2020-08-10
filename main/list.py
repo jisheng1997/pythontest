@@ -14,6 +14,7 @@
 list1 = ['Google', 'python', 1997, 2000]
 list2 = [1, 2, 3, 4, 5 ]
 list3 = ["a", "b", "c", "d"]
+list5 = ['b','a','h','d','y']
 tuple1 = ('I','love','python')
 
 print('------------以下是列表的获取，修改，删除-------------')
@@ -55,4 +56,30 @@ print(list(tuple1))
 #在列表末尾添加新的对象
 list1.append('baidu')
 print(list1)
-
+#统计某个元素在列表中出现的次数
+print(list1.count('Google'))
+#在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）
+list1.extend(list2)
+print(list1)
+#从列表中找出某个值第一个匹配项的索引位置
+print(list1.index("Google"))
+#将对象插入列表
+list1.insert(len(list1),'nihao')
+print(list1)
+#移除列表中的一个元素（默认最后一个元素），并且返回该元素的值
+print(list1.pop())
+#移除列表中某个值的第一个匹配项
+list1.remove("Google")
+print(list1)
+#反向列表中元素
+list1.reverse()
+print(list1)
+#对原列表进行排序 True升序
+list5.sort(reverse=True)
+print(list5)
+#复制列表
+listlist = list1.copy()
+print(listlist)
+#清空列表
+list1.clear()
+print(list1)
