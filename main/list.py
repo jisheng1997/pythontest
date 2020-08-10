@@ -17,6 +17,7 @@ list3 = ["a", "b", "c", "d"]
 tuple1 = ('I','love','python')
 
 print('------------以下是列表的获取，修改，删除-------------')
+
 print ("list1[0]: ", list1[0])
 print ("list1[-2]: ", list1[-2])
 print ("list2[1:5]: ", list2[1:5])
@@ -30,6 +31,7 @@ del list1[3]
 print ("删除第三个元素 : ", list1)
 
 print('-----------------以下是列表脚本操作符-------------------')
+
 #1.长度  2.组合  3.重复  4.元素是否存在于列表中
 print(len(list2),list2+list3,list1*4,3 in list2)
 #5.迭代
@@ -38,13 +40,19 @@ for x in list1:
 print('')
 
 print('-------------------以下是嵌套列表--------------------')
+
 list4 = [list1,list2,list3]
 print("list4: ",list4)
 print("list4[1]: ",list4[1])
 print("list4[2][3]: ",list4[2][3])
 
 print('-------------------以下是列表函数&方法---------------------')
+
 #列表元素个数/返回列表元素最大值/返回列表元素最小值
 print(len(list2),max(list2),min(list2))
+#将元组转换为列表
 print(list(tuple1))
+#在列表末尾添加新的对象
+list1.append('baidu')
+print(list1)
 
