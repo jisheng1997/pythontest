@@ -16,6 +16,7 @@
 
 list2= [12,14,5,9,30,16]
 
+#冒泡排序
 for j in range(0,len(list2)):
     for i in range (0,len(list2)-1-j):
         if list2[i]>list2[i+1]:
