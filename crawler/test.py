@@ -7,6 +7,7 @@
 """
 import requests
 import os
+from bs4 import BeautifulSoup
 
 headers = {
     'Accept-Encoding': 'gzip, deflate, sdch',
