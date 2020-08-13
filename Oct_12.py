@@ -7,8 +7,6 @@
 """
 
 import requests
-import json
-from lxml import etree
 
 path1 = "https://www.taobao.com"
 path2 = "https://httpbin.org/"
@@ -23,7 +21,7 @@ headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 # res3 = requests.get(path3,headers = headers,stream = True)
 # res4 = requests.get(path4,headers = headers)
 # res5 = requests.get(path2+'cookies',cookies = {'name':'jisheng'})
-  
+
 
 # print(res3.json())
 # print(res4.raw.read(100))
