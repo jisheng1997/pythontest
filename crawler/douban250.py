@@ -11,6 +11,7 @@ import re
 import time
 from bs4 import BeautifulSoup
 import pandas
+import os
 
 start_time = time.time()
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36','Host': 'movie.douban.com','Origin': 'movie.douban.com'}
@@ -29,6 +30,11 @@ starring = []
 types = []
 regions = []
 language_list = []
+release_dates = []
+runtime_list = []
+rate_list = []
+rate_number_list = []
+description_list = []
 
 def operate_url(url):
     urls = []
@@ -59,16 +65,16 @@ def movie_info(urls):
             years.append(soup.find('span',class_="year").text)
 
             #<a href="/celebrity/1054521/" rel="v:starring">蒂姆·罗宾斯</a>   获取主演的名字（不止一个）
-            star_temp = []
+            star_temp = ''
             for star in soup.find_all('a',rel="v:starring"):
-                star_temp.append(star.text)
-                starring.append(star_temp)
+                star_temp = star_temp + star.text + ','
+            starring.append(star_temp)
 
             #<span property="v:genre">剧情</span> / <span property="v:genre">犯罪</span><br/>   获取电影类型（不止一个）
-            type_temp = []
+            type_temp = ''
             for type in soup.find_all('span',property="v:genre"):
-                type_temp.append(type.text)
-                types.append(type_temp)
+                type_temp = type_temp + type.text + ','
+            types.append(type_temp)
 
             # #<span class="pl">制片国家/地区:</span> 美国<br/>   获取制片国家/地区
             region = soup.find('span',text="制片国家/地区:").next_sibling[1:]
@@ -79,25 +85,44 @@ def movie_info(urls):
             language_list.append(language)
 
             #<span class="pl">上映日期:</span> <span property="v:initialReleaseDate" content="1994-09-10(多伦多电影节)">1994-09-10(多伦多电影节)</span>
+            date_temp = ''
+            for date in soup.find_all('span',property = "v:initialReleaseDate"):
+                date_temp = date_temp + date.text + ','
+            release_dates.append(date_temp)
 
             #<span class="pl">片长:</span> <span property="v:runtime" content="142">142分钟</span>
+            runtime = soup.find('span',property="v:runtime").text
+            runtime_list.append(runtime)
 
             #<strong class="ll rating_num" property="v:average">9.7</strong>   获取豆瓣评分
+            rate = soup.find('strong',property="v:average").text
+            rate_list.append(rate)
 
             #<span property="v:votes">2109734</span>人评价    获取评价人数
+            rate_number = soup.find('span',property="v:votes").text
+            rate_number_list.append(rate_number)
 
-            #<span class ="all hidden" >20世纪40年代末，小有成就的青年银行家安迪（蒂姆·罗宾斯TimRobbins饰）因涉嫌杀害妻子及她的情人而锒铛入狱……</span>   获取故事简介
+if __name__ == '__main__':
+    movie_info(operate_url(top250_url))
+    # print(len(directors),len(movie_names),len(years),len(starring),
+    #       len(types),len(regions),len(language_list),len(release_dates),
+    #       len(runtime_list),len(rate_list),len(rate_number_list)
+    #       )
+    info = {'Movie name': movie_names, 'Directors': directors,
+            'type' : types,'starring' : starring,'years' : years,
+            'Country': regions, 'Languages': language_list,
+            'ReleaseDate' : release_dates,'Runtime': runtime_list,
+            'Rate' : rate_list,'Rate number' : rate_number_list,
+            }
+    filename = 'C://Users//User//Desktop//Douban250.xlsx'
+    pdfile = pandas.DataFrame(info)
+    pdfile.to_excel('C://Users//User//Desktop//Douban250.xlsx',sheet_name = '豆瓣电影排行榜250',index = False)
 
-
-
-movie_info(operate_url(top250_url))
-print(directors)
-print(movie_names)
-print(years)
-print(starring)
-print(types)
-print(regions)
-
+    if os.path.exists(filename):
+        message = '文件创建成功'
+    else:
+        message = '文件创建失败'
+    print(message)
 
 end_time = time.time()
 print("程序运行了" + str(round((end_time-start_time),1)) + '秒，也太慢了吧')
